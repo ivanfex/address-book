@@ -14,7 +14,7 @@ export default class Contact extends React.Component {
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleInput =  this.handleInput.bind(this);
-        //this.handleDelete = this.handleDelete.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleClick(e){
@@ -27,6 +27,7 @@ export default class Contact extends React.Component {
                     phoneNumber={this.state.phoneNumber}
                     email={this.state.email}
                     address={this.state.address}
+                    del={this.handleDelete}
                     />),
                 firstName: '',
                 lastName: '',
@@ -35,6 +36,7 @@ export default class Contact extends React.Component {
                 address: ''
             });
         }
+        console.log(this.state)
     }
 
     handleInput(e){
@@ -48,7 +50,10 @@ export default class Contact extends React.Component {
     }
 
     handleDelete(e){
-        this
+        console.log('Delete');
+        this.setState({
+            contactList: this.state.contactList.filter((contact) => contact !== e.target)
+        })
     }
 
     render() {
@@ -88,7 +93,7 @@ export default class Contact extends React.Component {
                 <br/>
                 <h2>Contacts</h2>
 
-                <OneContact firstName={'Ivan'} lastName={'Felix'} phoneNumber={'5182092039'} email={'ivaneduardo68@gmail.com'}/>
+                <OneContact firstName={'Ivan'} lastName={'Felix'} phoneNumber={'5182092039'} email={'ivaneduardo68@gmail.com'} address={'210E Aroundthere St.'}/>
                 {contactList}
             </div>
         );
