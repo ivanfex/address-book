@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import OneContact from './oneContact'
+
+
 export default class Contact extends React.Component {
     constructor(){
         super();
@@ -36,7 +38,6 @@ export default class Contact extends React.Component {
                 address: ''
             });
         }
-        console.log(this.state)
     }
 
     handleInput(e){
@@ -50,10 +51,10 @@ export default class Contact extends React.Component {
     }
 
     handleDelete(e){
-        console.log('Delete');
+        console.log(e)
         this.setState({
-            contactList: this.state.contactList.filter((contact) => contact !== e.target)
-        })
+            contactList: this.state.contactList.filter((contact) => contact !== e)
+        });
     }
 
     render() {
@@ -62,7 +63,8 @@ export default class Contact extends React.Component {
             margin: '2%'
         };
 
-        const contactList = this.state.contactList.map((item, index) => (item))
+        const contactList = this.state.contactList.map((item) => item)
+        console.log(contactList);
 
         return (
             <div style={style}>
@@ -93,7 +95,6 @@ export default class Contact extends React.Component {
                 <br/>
                 <h2>Contacts</h2>
 
-                <OneContact firstName={'Ivan'} lastName={'Felix'} phoneNumber={'5182092039'} email={'ivaneduardo68@gmail.com'} address={'210E Aroundthere St.'}/>
                 {contactList}
             </div>
         );
